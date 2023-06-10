@@ -1,2 +1,5 @@
 Agent2It.pro.user
-
+.qmake.stash
+*/Makefile
+Makefile
+build/

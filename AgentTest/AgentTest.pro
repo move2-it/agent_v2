@@ -8,6 +8,13 @@ CONFIG -= app_bundle
 CONFIG += thread
 CONFIG += qt
 
+unix {
+    DESTDIR = ../build/out/AgentTest
+
+    OBJECTS_DIR = $$DESTDIR/.obj
+    MOC_DIR = $$DESTDIR/.moc
+}
+
 HEADERS += \
         MockQEventLoopWrapper.hpp \
         MockQNetworkAccessManagerWrapper.hpp \
