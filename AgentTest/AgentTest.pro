@@ -3,7 +3,7 @@ include(gtest_dependency.pri)
 QT += quick
 
 TEMPLATE = app
-CONFIG += console
+CONFIG += c++17 console
 CONFIG -= app_bundle
 CONFIG += thread
 CONFIG += qt
@@ -22,7 +22,6 @@ HEADERS += \
         MockWebRequesterInterface.hpp
 
 SOURCES += \
-        OffersDataHelperFunctionTest.cpp \
         WebReaderTest.cpp \
         WebRequesterTest.cpp \
         main.cpp

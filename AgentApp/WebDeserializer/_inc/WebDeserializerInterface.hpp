@@ -9,7 +9,7 @@
 class WebDeserializerInterface
 {
 public:
-    using OffersList = QList<OffersData>;
+    using OffersList = QList<OffertData>;
 
     WebDeserializerInterface() = default;
 
