@@ -7,7 +7,7 @@
 class MockWebDeserializerInterface : public WebDeserializerInterface
 {
 public:
-    MOCK_METHOD(OffersList, deserializeOffers, (const QByteArray& offersArray), (override));
+    MOCK_METHOD(Error_Code_T, deserializeOffers, (const QByteArray& offersArray, OffersList& offerList), (override));
 };
 
 #endif // MOCKWEBDESERIALIZERINTERFACE_HPP

@@ -22,6 +22,7 @@ HEADERS += \
         MockWebRequesterInterface.hpp
 
 SOURCES += \
+        JustJoinItDeserializerTest.cpp \
         WebReaderTest.cpp \
         WebRequesterTest.cpp \
         main.cpp

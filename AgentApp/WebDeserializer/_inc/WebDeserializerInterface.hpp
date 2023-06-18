@@ -5,6 +5,7 @@
 #include <QList>
 
 #include "OffersData.hpp"
+#include "CommonTypes.hpp"
 
 class WebDeserializerInterface
 {
@@ -15,7 +16,7 @@ public:
 
     virtual ~WebDeserializerInterface() = default;
 
-    virtual OffersList deserializeOffers(const QByteArray& offersArray) = 0;
+    virtual Error_Code_T deserializeOffers(const QByteArray& offersArray, OffersList& offerList) = 0;
 };
 
 #endif // WEBSERIALIZERINTERFACE_HPP

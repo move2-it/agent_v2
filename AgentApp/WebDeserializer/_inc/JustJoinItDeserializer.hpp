@@ -12,7 +12,7 @@ public:
 
     virtual ~JustJoinItDeserializer() = default;
 
-    virtual OffersList deserializeOffers(const QByteArray& offersArray) override;
+    virtual Error_Code_T deserializeOffers(const QByteArray& offersArray, OffersList& offerList) override;
 };
 
 #endif // JUSTJOINITSERIALIZER_HPP

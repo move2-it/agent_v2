@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "WebReader.hpp"
 #include "MockWebRequesterInterface.hpp"
 #include "MockWebDeserializerInterface.hpp"
@@ -45,6 +46,15 @@ TEST_F(WebReaderTest, WebReaderRunExecutionRequestError)
 {
     EXPECT_CALL(mockWebRequester, execRequest).Times(1).WillOnce(Return(Error_Code_T::ERROR));
     EXPECT_CALL(mockWebDeserializer, deserializeOffers).Times(0);
+
+    EXPECT_EQ(Error_Code_T::ERROR, webReader.run());
+    EXPECT_EQ(Component_State_T::COMPONENT_ERROR, webReader.getState());
+}
+
+TEST_F(WebReaderTest, WebReaderRunWebDeserializerError)
+{
+    EXPECT_CALL(mockWebRequester, execRequest).Times(1).WillOnce(Return(Error_Code_T::SUCCESS));
+    EXPECT_CALL(mockWebDeserializer, deserializeOffers).Times(1).WillOnce(Return(Error_Code_T::ERROR));
 
     EXPECT_EQ(Error_Code_T::ERROR, webReader.run());
     EXPECT_EQ(Component_State_T::COMPONENT_ERROR, webReader.getState());

@@ -18,6 +18,12 @@ struct Skill
     quint8 skillLevel;
 };
 
+struct Multilocation
+{
+    QString city;
+    QString slugId;
+};
+
 struct OffertData
 {
     QString idOffert;
@@ -30,6 +36,7 @@ struct OffertData
     QList<Salary> salary;
     QList<Skill> skill;
     QString workplace;
+    QList<Multilocation> multilocation;
 };
 
 #endif // OFFERSDATA_HPP

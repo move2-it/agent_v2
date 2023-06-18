@@ -37,14 +37,20 @@ Error_Code_T WebReader::run()
     do
     {
         result = webRequester.execRequest();
-
         if(result != Error_Code_T::SUCCESS)
         {
             qDebug() << "Request error";
             break;
         }
 
-        webDeserializer.deserializeOffers(webRequester.getRequestMessage());
+        QList<OffertData> offertData;
+        result = webDeserializer.deserializeOffers(webRequester.getRequestMessage(), offertData);
+        if(result != Error_Code_T::SUCCESS)
+        {
+            qDebug() << "Deserialize error";
+            break;
+        }
+
     } while(false);
 
     if(result != Error_Code_T::SUCCESS)
