@@ -80,7 +80,7 @@ TEST_F(WebRequesterTest, WebRequesterCheckDefaultRequestMessage)
 
 TEST_F(WebRequesterTest, WebRequesterConfigureSuccess)
 {
-    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>(new QNetworkAccessManager());
+    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>();
     QNetworkReply *reply = manager->get(QNetworkRequest(QUrl()));
 
     EXPECT_CALL(mockAccessManager, get).Times(1).WillOnce(Return(reply));
@@ -97,9 +97,9 @@ TEST_F(WebRequesterTest, WebRequesterConfigureFail)
 
 TEST_F(WebRequesterTest, WebRequesterExecutionSuccess)
 {
-    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>(new QNetworkAccessManager());
+    std::unique_ptr<QNetworkAccessManager> manager = std::make_unique<QNetworkAccessManager>();
     QNetworkReply *baseReply = manager->get(QNetworkRequest(QUrl()));
-    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(new QNetworkReplyBridge(baseReply));
+    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(baseReply);
 
     reply->setError(QNetworkReply::NetworkError::NoError, "NoError");
     reply->setMessageDataToReadData("messageData");
@@ -114,9 +114,9 @@ TEST_F(WebRequesterTest, WebRequesterExecutionSuccess)
 
 TEST_F(WebRequesterTest, WebRequesterExecutionEventFail)
 {
-    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>(new QNetworkAccessManager());
+    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>();
     QNetworkReply *baseReply = manager->get(QNetworkRequest(QUrl()));
-    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(new QNetworkReplyBridge(baseReply));
+    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(baseReply);
 
     ON_CALL(mockAccessManager, get).WillByDefault(Return(reply.get()));
     EXPECT_CALL(mockEventLoop, exec).Times(1).WillOnce(Return(QEventLoop::X11ExcludeTimers));
@@ -128,9 +128,9 @@ TEST_F(WebRequesterTest, WebRequesterExecutionEventFail)
 
 TEST_F(WebRequesterTest, WebRequesterExecutionNetworkReplyError)
 {
-    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>(new QNetworkAccessManager());
+    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>();
     QNetworkReply *baseReply = manager->get(QNetworkRequest(QUrl()));
-    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(new QNetworkReplyBridge(baseReply));
+    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(baseReply);
 
     reply->setError(QNetworkReply::NetworkError::UnknownNetworkError, "UnknownNetworkError");
 
@@ -144,9 +144,9 @@ TEST_F(WebRequesterTest, WebRequesterExecutionNetworkReplyError)
 
 TEST_F(WebRequesterTest, WebRequesterExecutionSuccessMoveReadMessageCheck)
 {
-    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>(new QNetworkAccessManager());
+    std::shared_ptr<QNetworkAccessManager> manager = std::make_shared<QNetworkAccessManager>();
     QNetworkReply *baseReply = manager->get(QNetworkRequest(QUrl()));
-    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(new QNetworkReplyBridge(baseReply));
+    std::unique_ptr<QNetworkReplyBridge> reply = std::make_unique<QNetworkReplyBridge>(baseReply);
 
     reply->setError(QNetworkReply::NetworkError::NoError, "NoError");
     const QByteArray messageData{"messageData"};
