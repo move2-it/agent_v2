@@ -13,6 +13,14 @@ unix {
 
     OBJECTS_DIR = $$DESTDIR/.obj
     MOC_DIR = $$DESTDIR/.moc
+
+    equals(GCOVERAGE, true) {
+        message("Use coverity flag for report generation")
+        QMAKE_CXXFLAGS += -coverage -fprofile-arcs -ftest-coverage
+        QMAKE_LFLAGS += -lgcov
+
+        LIBS += -lgcov
+    }
 }
 
 HEADERS += \
