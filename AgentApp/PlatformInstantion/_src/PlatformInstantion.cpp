@@ -1,6 +1,7 @@
 #include "PlatformInstantion.hpp"
 #include "WebRequester.hpp"
 #include "JustJoinItDeserializer.hpp"
+#include "JustJoinItDataFilter.hpp"
 #include "WebReader.hpp"
 
 WebRequesterInterface& getWebRequester()
@@ -17,8 +18,14 @@ WebDeserializerInterface& getWebDeserializer()
     return justJoinItDeserializer;
 }
 
+WebDataFilterInterface& getWebDataFilter()
+{
+    static JustJoinItDataFilter justJoinItDataFilter;
+    return justJoinItDataFilter;
+}
+
 WebReaderInterface& getWebReader()
 {
-    static WebReader webReader{getWebRequester(), getWebDeserializer()};
+    static WebReader webReader{getWebRequester(), getWebDeserializer(), getWebDataFilter()};
     return webReader;
 }

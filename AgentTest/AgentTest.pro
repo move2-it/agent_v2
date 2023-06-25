@@ -28,10 +28,12 @@ HEADERS += \
         MockQEventLoopWrapper.hpp \
         MockQFileWrapper.hpp \
         MockQNetworkAccessManagerWrapper.hpp \
+        MockWebDataFilterInterface.hpp \
         MockWebDeserializerInterface.hpp \
         MockWebRequesterInterface.hpp
 
 SOURCES += \
+        JustJoinItDataFilterTest.cpp \
         JustJoinItDeserializerTest.cpp \
         TxtFileLoggerWritterTest.cpp \
         WebReaderTest.cpp \
@@ -45,7 +47,8 @@ INCLUDEPATH += \
         ../AgentApp/QtWrappers/_inc \
         ../AgentApp/WebDeserializer/_inc \
         ../AgentApp/WebReader/_inc \
-        ../AgentApp/LoggerWritter/_inc
+        ../AgentApp/LoggerWritter/_inc \
+        ../AgentApp/WebDataFilter/_inc \
 
 include(PlatformCfg/PlatformCfg.pri)
 include(PlatformInstantion/PlatformInstantion.pri)
@@ -54,3 +57,4 @@ include(../AgentApp/QtWrappers/QtWrappers.pri)
 include(../AgentApp/WebDeserializer/WebDeserializer.pri)
 include(../AgentApp/WebReader/WebReader.pri)
 include(../AgentApp/LoggerWritter/LoggerWritter.pri)
+include(../AgentApp/WebDataFilter/WebDataFilter.pri)

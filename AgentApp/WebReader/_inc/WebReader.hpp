@@ -4,12 +4,14 @@
 #include "WebReaderInterface.hpp"
 #include "WebRequesterInterface.hpp"
 #include "WebDeserializerInterface.hpp"
+#include "WebDataFilterInterface.hpp"
 
 class WebReader : public WebReaderInterface
 {
 public:
     explicit WebReader(WebRequesterInterface& _webRequester,
-                       WebDeserializerInterface& _webDeserializer);
+                       WebDeserializerInterface& _webDeserializer,
+                       WebDataFilterInterface& _webDataFilterInterface);
 
     virtual ~WebReader() = default;
 
@@ -26,6 +28,7 @@ private:
 
     WebRequesterInterface& webRequester;
     WebDeserializerInterface& webDeserializer;
+    WebDataFilterInterface& webDataFilterInterface;
 };
 
 #endif // WEBREADER_H

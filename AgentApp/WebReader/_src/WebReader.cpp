@@ -6,10 +6,12 @@
 #include "PlatformCfg.hpp"
 
 WebReader::WebReader(WebRequesterInterface& _webRequester,
-                     WebDeserializerInterface& _webDeserializer) :
+                     WebDeserializerInterface& _webDeserializer,
+                     WebDataFilterInterface& _webDataFilterInterface) :
     componentState(Component_State_T::COMPONENT_NOT_INITIALISED),
     webRequester(_webRequester),
-    webDeserializer(_webDeserializer)
+    webDeserializer(_webDeserializer),
+    webDataFilterInterface(_webDataFilterInterface)
 {
 
 }
@@ -50,6 +52,13 @@ Error_Code_T WebReader::run()
         if(result != Error_Code_T::SUCCESS)
         {
             qDebug() << "Deserialize error";
+            break;
+        }
+
+        result = webDataFilterInterface.filter(offertData);
+        if(result != Error_Code_T::SUCCESS)
+        {
+            qDebug() << "Filter offert data error";
             break;
         }
 
