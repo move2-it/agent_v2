@@ -15,7 +15,7 @@ unix {
     MOC_DIR = $$DESTDIR/.moc
 
     equals(GCOVERAGE, true) {
-        message("Use coverity flag for report generation")
+        message("Use GCOVERAGE flag for test coverage raport generation")
         QMAKE_CXXFLAGS += -coverage -fprofile-arcs -ftest-coverage
         QMAKE_LFLAGS += -lgcov
 
@@ -24,24 +24,33 @@ unix {
 }
 
 HEADERS += \
+        MockLoggerWritterInterface.hpp \
         MockQEventLoopWrapper.hpp \
+        MockQFileWrapper.hpp \
         MockQNetworkAccessManagerWrapper.hpp \
         MockWebDeserializerInterface.hpp \
         MockWebRequesterInterface.hpp
 
 SOURCES += \
         JustJoinItDeserializerTest.cpp \
+        TxtFileLoggerWritterTest.cpp \
         WebReaderTest.cpp \
         WebRequesterTest.cpp \
         main.cpp
 
 INCLUDEPATH += \
+        PlatformCfg/_inc \
+        PlatformInstantion/_inc \
         ../AgentApp/CommonTools/_inc \
         ../AgentApp/QtWrappers/_inc \
         ../AgentApp/WebDeserializer/_inc \
-        ../AgentApp/WebReader/_inc
+        ../AgentApp/WebReader/_inc \
+        ../AgentApp/LoggerWritter/_inc
 
+include(PlatformCfg/PlatformCfg.pri)
+include(PlatformInstantion/PlatformInstantion.pri)
 include(../AgentApp/CommonTools/CommonTools.pri)
 include(../AgentApp/QtWrappers/QtWrappers.pri)
 include(../AgentApp/WebDeserializer/WebDeserializer.pri)
 include(../AgentApp/WebReader/WebReader.pri)
+include(../AgentApp/LoggerWritter/LoggerWritter.pri)

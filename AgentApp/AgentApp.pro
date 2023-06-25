@@ -19,8 +19,14 @@ INCLUDEPATH += \
     QtWrappers/_inc \
     WebReader/_inc \
     WebDeserializer/_inc \
+    LoggerWritter/_inc \
+    PlatformCfg/_inc \
+    PlatformInstantion/_inc
 
 include(CommonTools/CommonTools.pri)
 include(QtWrappers/QtWrappers.pri)
 include(WebReader/WebReader.pri)
 include(WebDeserializer/WebDeserializer.pri)
+include(LoggerWritter/LoggerWritter.pri)
+include(PlatformCfg/PlatformCfg.pri)
+include(PlatformInstantion/PlatformInstantion.pri)

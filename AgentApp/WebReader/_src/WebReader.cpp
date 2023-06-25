@@ -2,6 +2,8 @@
 #include <QDebug>
 
 #include "WebReader.hpp"
+#include "LoggerInstantion.hpp"
+#include "PlatformCfg.hpp"
 
 WebReader::WebReader(WebRequesterInterface& _webRequester,
                      WebDeserializerInterface& _webDeserializer) :
@@ -50,6 +52,15 @@ Error_Code_T WebReader::run()
             qDebug() << "Deserialize error";
             break;
         }
+
+    #if FILE_LOGGER
+        result = getTxtFileLogger().print(offertData);
+        if(result != Error_Code_T::SUCCESS)
+        {
+            qDebug() << "File logging error";
+            break;
+        }
+    #endif
 
     } while(false);
 

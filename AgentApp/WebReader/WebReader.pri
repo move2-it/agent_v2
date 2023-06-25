@@ -5,6 +5,7 @@ SOURCES += \
     $$PWD/_src/WebRequester.cpp
 
 HEADERS += \
+    $$PWD/_api/WebReaderApi.hpp \
     $$PWD/_inc/WebReader.hpp \
     $$PWD/_inc/WebReaderInterface.hpp \
     $$PWD/_inc/WebRequester.hpp \
